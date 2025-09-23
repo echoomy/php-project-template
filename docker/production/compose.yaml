@@ -17,14 +17,14 @@ services:
       - application
     restart: unless-stopped
 
-database:
-  image: postgres:17.6
-  environment:
-    POSTGRES_USER: ${DATABASE_USERNAME}
-    POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-  volumes:
-    - data:/var/lib/postgresql/data/
-  restart: unless-stopped
+  database:
+    image: postgres:17.6
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - data:/var/lib/postgresql/data/
+    restart: unless-stopped
 
 volumes:
   data:
