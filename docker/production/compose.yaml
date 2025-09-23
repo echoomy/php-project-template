@@ -1,0 +1,35 @@
+name: ${PROJECT_NAME}-production
+
+services:
+  application:
+    build:
+      context: ./../../
+      dockerfile: ./docker/development/images/application.dockerfile
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ./../../
+      dockerfile: ./docker/development/images/server.dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - application
+    restart: unless-stopped
+
+database:
+  image: postgres:17.6
+  environment:
+    POSTGRES_USER: ${DATABASE_USERNAME}
+    POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+  volumes:
+    - data:/var/lib/postgresql/data/
+  restart: unless-stopped
+
+volumes:
+  data:
+    name: ${PROJECT_NAME}-production-data
+
+networks:
+  default:
+    name: ${PROJECT_NAME}-production
