@@ -6,7 +6,7 @@ services:
       context: ./../../
       dockerfile: ./docker/development/images/application.dockerfile
     volumes:
-      - ./../../source/development/application/:/var/www/html/
+      - ./../../source/:/var/www/html/
     restart: unless-stopped
 
   server:
@@ -16,7 +16,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./../../source/development/application/:/var/www/html/
+      - ./../../source/:/var/www/html/
     depends_on:
       - application
     restart: unless-stopped
