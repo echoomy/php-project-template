@@ -12,6 +12,15 @@ Run development server with:
 docker compose -f ./docker/development/compose.yaml up
 ```
 
+You can use a local PostgreSQL cluster for storage by merging it with the `compose.database.yaml` file:
+
+```
+docker compose -f ./docker/development/compose.yaml -f ./docker/development/compose.database.yaml up
+```
+
+The same applies to the `./docker/production/` configuration.
+
+
 ## Author
 
 Made by Egor Chumichev. With love lost and dreams unchased.
